@@ -12,8 +12,13 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('budget_app')
 
-income = SHEET.worksheet('income')
+def get_income_data():
+    """ 
+    Get income figures input from the user
+    """
+    print("Welcome to the budget app.")
+    
+    data_str = input("Please enter the value of your income here: \n")
+    print(f"The data provided is {data_str}")
 
-data = income.get_all_values()
-
-print(data)
+get_income_data()
