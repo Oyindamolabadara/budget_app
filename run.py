@@ -27,12 +27,17 @@ def check_input_type(text):
         return True
 
 def convert_to_lowercase(value):
-    # Convert input to lower case. 
+    """
+    Convert input to lower case. 
+    """
     return value.lower()
 
 
 
 def initialize_app():
+    """
+    Display messages to guide users on how to use the app. 
+    """
     initialize = True
     while initialize:
         print('Welcome to the Budget App!\n')
