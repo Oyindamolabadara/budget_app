@@ -217,6 +217,23 @@ def initialize_update():
             elif check_entered_values(convert_to_lowercase(row)) == "new":
                 update_budget_new(section, data)
 
+def clear_worksheet():
+    verification = input(
+      '''
+      Warning! all data including worksheet header will be lost\n
+      This cannot be undone\n
+      You will need to reconstruct the sheet starting from its header for future usage with "update"\n
+      To clear income enter  "Clear Income". To clear expenses enter "Clear Expenses"\n
+      To return to main type "Main"
+      To end the process enter exit\n
+      '''
+    )
+    if convert_to_lowercase(verification) == "clear income":
+        SHEET.worksheet('income').clear()
+        get_all_income()
+    elif convert_to_lowercase(verification) == "clear expenses":
+        SHEET.worksheet('expenses').clear()
+        get_all_expenses()                
 
 
 
