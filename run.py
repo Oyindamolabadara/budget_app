@@ -235,7 +235,36 @@ def clear_worksheet():
         SHEET.worksheet('expenses').clear()
         get_all_expenses()                
 
-
+def check_entered_values(value):
+    if value == 'main':
+        initialize_app()
+    elif value == 'income':
+        get_all_income()
+        return True
+    elif value == 'expenses':
+        get_all_expenses()
+        return True
+    elif value == 'highest':
+        get_total_and_highest_expenses()
+        print(
+          f'''Highest Expenses: {highest_expenses}
+          _____________________________________\n'''
+        )  
+    elif value == 'all':
+        get_all_income()
+        get_all_expenses()
+    elif value =='update':
+        initialize_update()
+    elif value == 'clear':
+        clear_worksheet()
+    elif value == 'exit':
+        exit()
+    elif value == 'new row':
+        return 'new'
+    elif value.isnumeric():
+        return True
+    else:
+        print('Invalid input. Please enter the appropriate command. \n')
 
 
 
