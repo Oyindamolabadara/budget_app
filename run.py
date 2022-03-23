@@ -32,6 +32,52 @@ def convert_to_lowercase(value):
     """
     return value.lower()
 
+highest_expenses=0
+
+def get_total_and_highest_expenses():
+    """ 
+    Loops through the numbers in the spreadsheet,
+    checks for the highest expense and add all the numbers to get total expenses.
+    """
+    total_expenses=0
+
+    expenses_dict={}
+    all_expenses=expenses.get_all_values()
+    if len(all_expenses) > 1:
+        for index in range(len(all_expenses)):
+            if index > 0:
+                total=0
+                inner=all_expenses[index]
+                for index_a in range(len(inner)):
+                    if index_a > 0:
+                        total += int(inner[index_a])
+                        total_expenses += int(inner[index_a])
+                expenses_dict.update({inner[0]:total})
+        global highest_expenses  
+        highest_expenses = max(expenses_dict, key=expenses_dict.get)
+    else:
+        total_expenses = "Expenses is currently empty. Enter update to add values.\n"
+    print(f'Total Expenses: {total_expenses}\n')
+
+def get_total_income():
+    """ 
+    Loops through the numbers in the spreadsheet.
+    Add all the numbers to get total expenses.
+    """
+    total_income=0
+
+    all_income=income.get_all_values()
+    if len(all_income) > 1:
+        for index in range(len(all_income)):
+            if index > 0:
+                inner=all_income[index]
+                for index_a in range(len(inner)):
+                    if index_a > 0:
+                        total_income += int(inner[index_a])
+    else:
+        total_income = 'Income is currently empty. Enter "Update" to add values.\n'
+    print(f'Total Income: {total_income}\n')
+
 
 
 def initialize_app():
