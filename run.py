@@ -149,6 +149,19 @@ def update_budget_new(section, data):
     ) 
     initialize_app()
 
+def update_budget_column(section, data, row, column):
+    print("Updating budget........")
+    print(data)
+    worksheet = SHEET.worksheet(section)
+    worksheet.update_cell(row, column, data[1])
+    print(
+      '''
+      Column updated successfully.
+      ___________________________\n
+      '''
+    )
+    initialize_app()
+
 
 
 
