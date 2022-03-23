@@ -1,6 +1,7 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
-
+from prettytable import PrettyTable
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -12,13 +13,5 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('budget_app')
 
-def get_income_data():
-    """ 
-    Get income figures input from the user
-    """
-    print("Welcome to the budget app.")
-    
-    data_str = input("Please enter the value of your income here: \n")
-    print(f"The data provided is {data_str}")
-
-get_income_data()
+income = SHEET.worksheet('income')
+expenses = SHEET.worksheet('expenses')
