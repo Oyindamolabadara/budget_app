@@ -103,7 +103,7 @@ def get_all_income():
         )
 
 def get_all_expenses():
-     """
+    """
     clear the terminal, get expenses from spread sheet
     and display it in a table
     """
@@ -265,10 +265,6 @@ def check_entered_values(value):
         return True
     else:
         print('Invalid input. Please enter the appropriate command. \n')
-
-
-
-
 
 def initialize_app():
     """
