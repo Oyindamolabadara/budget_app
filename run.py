@@ -15,3 +15,13 @@ SHEET = GSPREAD_CLIENT.open('budget_app')
 
 income = SHEET.worksheet('income')
 expenses = SHEET.worksheet('expenses')
+
+def check_input_type(text):
+    '''Checks if the user enters an alphabet or a number.
+       Returns an error message if the user enters a number.
+    '''
+    if text.isnumeric():
+        # os.system('cls' if os.name == 'nt' else 'clear')
+        print('Invalid input. Please enter alphabets')
+    else:
+        return True
