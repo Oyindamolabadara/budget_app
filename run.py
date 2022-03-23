@@ -62,11 +62,12 @@ def get_total_and_highest_expenses():
 def get_total_income():
     """ 
     Loops through the numbers in the spreadsheet.
-    Add all the numbers to get total expenses.
+    Add all the numbers to get total income.
     """
     total_income=0
 
     all_income=income.get_all_values()
+
     if len(all_income) > 1:
         for index in range(len(all_income)):
             if index > 0:
@@ -77,6 +78,34 @@ def get_total_income():
     else:
         total_income = 'Income is currently empty. Enter "Update" to add values.\n'
     print(f'Total Income: {total_income}\n')
+
+def get_all_income():
+    """
+    clear the terminal, get income from spread sheet
+    and display it in a table
+    """
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    all_income = income.get_all_values()
+    if all_income:
+        table = PrettyTable()
+        print('Annual Income Sheet')
+        table.field_names=all_income[0]
+        for index in range(len(all_income)):
+            if index > 0:
+                table.add_row(all_income[index])
+        print(table)
+        get_total_income()
+    else:
+        print(
+          '''
+            Income has been cleared. You need to reconstruct the sheet from it's header with "Update"
+          ___________________________________\n'''
+        )
+
+
+
+
+
 
 
 
