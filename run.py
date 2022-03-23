@@ -125,7 +125,29 @@ def get_all_expenses():
           '''
         )
 
-
+def update_budget_new(section, data):
+    '''
+    convert data_array from string to number
+    Add new row to budget app
+    '''
+    print("Updating budget........")
+    budget_data = []
+    for index in range(len(data)):
+        if index != 0:
+            budget_data.append(int(data[index]))
+        else:
+            budget_data.append(data[index])
+        
+    worksheet = SHEET.worksheet(section)
+    print(budget_data)
+    worksheet.append_row(budget_data)
+    print(
+      '''
+      Row updated successfully.
+      ___________________________\n
+      '''
+    ) 
+    initialize_app()
 
 
 
