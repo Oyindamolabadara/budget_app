@@ -102,7 +102,28 @@ def get_all_income():
           ___________________________________\n'''
         )
 
-
+def get_all_expenses():
+     """
+    clear the terminal, get expenses from spread sheet
+    and display it in a table
+    """
+    all_expenses = expenses.get_all_values()
+    if all_expenses:
+        table = PrettyTable()
+        print('Annual expenses sheet')
+        table.field_names=all_expenses[0]
+        for index in range(len(all_expenses)):
+            if index > 0:
+                table.add_row(all_expenses[index])
+        print(table)
+        get_total_and_highest_expenses()
+    else:
+        print(
+          '''
+          Expenses has been cleared. You need to reconstruct the sheet from it's header with "Update"
+          ___________________________________\n
+          '''
+        )
 
 
 
