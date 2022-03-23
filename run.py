@@ -162,6 +162,65 @@ def update_budget_column(section, data, row, column):
     )
     initialize_app()
 
+def initialize_update():
+    initialize = True
+    while initialize:
+        section = input(
+          '''
+          Enter "Income" to update your income:\n
+          Enter "Expenses" to update your expenses:\n
+          '''
+        )
+        section = convert_to_lowercase(section)
+        if(check_entered_values(section) == True):
+            data = input(
+            '''
+            Enter worksheet values in the following format: \n
+            Enter the title followed by the figures seperated by commas.\n 
+            For example: salary,2000,4000,300 \n
+            To update a single column enter the title followed by the figure seperated by comma.\n
+            For example: salary,2000.\n
+            To leave a column blank enter number zero. For example Feeding,500,0,1000,1000.\n
+            Enter "Main" to return to the main page:\n
+            To end the process please enter "Exit":\n
+            '''
+            )
+            data = data.split(",")
+
+        
+        if data:
+            row = input(
+              f'''
+              Data accepted
+              __________________________________\n\n
+              Enter "New Row" to add inputed values to a new {section} income or expenses row:\n
+              The row starts from the very top (the heading)
+              Enter the row number for example "1" to update the first row:\n
+              Enter "Main" to return to the main page:\n
+              To end the process please enter "Exit":\n
+              '''
+              )
+
+            if check_entered_values(convert_to_lowercase(row)) == True:
+                column = input(
+                '''
+                Row value accepted
+                __________________________________\n\n
+                Enter the column number for example "1" to update the first column:\n
+                Enter "Main" to return to the main page:\n
+                To end the process please enter "Exit":\n
+                '''
+                )
+                if data:
+                    update_budget_column(section, data, row, column)
+
+            elif check_entered_values(convert_to_lowercase(row)) == "new":
+                update_budget_new(section, data)
+
+
+
+
+
 
 
 
