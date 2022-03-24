@@ -281,7 +281,7 @@ def initialize_app():
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
       
-        user_input = input('Enter your data here: ')
+        user_input = input('Enter your data here:\n')
         'Validate input type'
 
         if check_input_type(user_input) == True:
