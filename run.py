@@ -40,7 +40,6 @@ def convert_to_lowercase(value):
 
 HIGHEST_EXPENSES = 0
 
-
 def get_total_and_highest_expenses():
     """
     Loops through the numbers in the spreadsheet,
@@ -68,6 +67,7 @@ def get_total_and_highest_expenses():
         Expenses is currently empty. Enter update to add values.\n
         """
     print(f'Total Expenses: {total_expenses}\n')
+    return total_expenses
 
 
 def get_total_income():
@@ -91,8 +91,22 @@ def get_total_income():
         Income is currently empty.Enter "Update" to add values.\n
         """
     print(f'Total Income: {total_income}\n')
+    return total_income
 
 
+def check_profit_or_loss():
+    expenses = get_total_and_highest_expenses()
+    income = get_total_income()
+    if income > expenses:
+      print('Your money habits look good.')
+      print('Your total income is greater than your expenses. You are doing well.')
+      print(f'Your total income is {income}. While your total expenses is {expenses}.')
+    elif expenses > income:
+      print('You seem to be spending too much.')
+      print(f'Your total expenses is {expenses}. While your total income is {income}.')
+    else:
+      print('Your income and expense are equal.')
+    print('___________________________________________')
 def get_all_income():
     """
     clear the terminal, get income from spread sheet
@@ -148,23 +162,33 @@ def update_budget_new(section, data):
     Convert data_array from string to number.
     Add new row to budget app.
     '''
-    print("Updating budget........")
-    budget_data = []
-    for index in range(len(data)):
-        if index != 0:
-            budget_data.append(int(data[index]))
-        else:
-            budget_data.append(data[index])
-    worksheet = SHEET.worksheet(section)
-    print(budget_data)
-    worksheet.append_row(budget_data)
-    print(
-      '''
-      Row updated successfully.
-      ___________________________\n
-      '''
-    )
-    initialize_app()
+    if len(data) == 5:
+        print("Updating budget........")
+        budget_data = []
+        for index in range(len(data)):
+            if index != 0:
+                budget_data.append(int(data[index]))
+            else:
+                budget_data.append(data[index])
+        worksheet = SHEET.worksheet(section)
+        print(budget_data)
+        worksheet.append_row(budget_data)
+        print(
+          '''
+          Row updated successfully.
+          ___________________________\n
+          '''
+        )
+        initialize_update()
+    elif len(data) > 5:
+        print('Error! Values are greater than five')
+        print(data)
+        print('Worksheet values should be a maximum of five')
+        initialize_update()
+    elif len(data) < 5:
+        print('Error! Values are less than five')
+        print(data)
+        initialize_update()
 
 
 def update_budget_column(section, data, row, column):
@@ -172,17 +196,28 @@ def update_budget_column(section, data, row, column):
     Convert data_array from string to number.
     Add new column to budget app.
     """
-    print("Updating budget........")
-    print(data)
-    worksheet = SHEET.worksheet(section)
-    worksheet.update_cell(row, column, data[1])
-    print(
-      '''
-      Column updated successfully.
-      ___________________________\n
-      '''
-    )
-    initialize_app()
+    if len(data) == 2:
+        print("Updating budget........")
+        print(data)
+        worksheet = SHEET.worksheet(section)
+        worksheet.update_cell(row, column, data[1])
+        print(
+          '''
+          Column updated successfully.
+          ___________________________\n
+          '''
+        )
+        initialize_update()  
+    elif len(data) > 2:
+        print('Error! Values are greater than two')
+        print(data)
+        print('Values should be equal two when you are editing a column')
+        initialize_update()
+    elif len(data) <  2:
+        print('Error! value is less than two')
+        print(data)
+        print('Values should be equal two when you are editing a column')
+        initialize_update()
 
 
 def initialize_update():
@@ -207,9 +242,9 @@ def initialize_update():
                 To update a single column enter the title followed by the
                 figure seperated by comma.\n
                 For example: salary,2000.\n
-                To leave a column blank enter number zero.
-                For example Feeding,500,0,1000,1000.\n
-                Enter "Main" to return to the main page:\n
+                To leave a column blank when creating a new row enter number zero.
+                For example Feeding,500,0,1000,1000.
+                And Clothing,200,0,0,0 \n
                 To end the process please enter "Exit":\n
                 '''
                 )
@@ -231,7 +266,6 @@ def initialize_update():
 
             if check_entered_values(convert_to_lowercase(row)) is True:
                 column = input('''
-
                 Row value accepted
                 __________________________________\n\n
                 Enter the column number for example "1"
@@ -286,6 +320,8 @@ def check_entered_values(value):
           f'''Highest Expenses: {HIGHEST_EXPENSES}
           _____________________________________\n'''
         )
+    elif value == 'status':
+        check_profit_or_loss()
     elif value == 'all':
         get_all_income()
         get_all_expenses()
@@ -314,8 +350,8 @@ def initialize_app():
         print('Please enter "Income" to display all recorded income.\n')
         print('Please enter "Expenses" to display all recorded expenses.\n')
         print('Please enter "Highest" to get your highest expenses.\n')
-        print('''Please enter "All" to display all recorded income and expenses.
-        ''')
+        print('Please enter "All" to display all recorded income and expenses.\n')
+        print('Please enter "Status" to know if you are making more money or spending more money')
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
         user_input = input('Enter your data here:\n')
