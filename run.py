@@ -310,12 +310,12 @@ def initialize_app():
     initialize = True
     while initialize:
         print('Welcome to the Budget App!\n')
-        print('''Please enter "All" to display all recorded income and expenses.
-        ''')
+        print('Please enter "Update" to make changes to the budget.\n')
         print('Please enter "Income" to display all recorded income.\n')
         print('Please enter "Expenses" to display all recorded expenses.\n')
-        print('Please enter "Update" to make changes to the budget.\n')
-        print('Please enter "Highest" to get the your highest expenses.\n')
+        print('Please enter "Highest" to get your highest expenses.\n')
+        print('''Please enter "All" to display all recorded income and expenses.
+        ''')
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
         user_input = input('Enter your data here:\n')
