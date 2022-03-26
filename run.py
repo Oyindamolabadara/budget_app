@@ -26,7 +26,7 @@ def check_input_type(text):
     '''
     if text.isnumeric():
         os.system('cls' if os.name == 'nt' else 'clear')
-        print('Invalid input. Please enter alphabets')
+        print('Invalid input. Please enter alphabets.')
     else:
         return True
 
@@ -39,6 +39,7 @@ def convert_to_lowercase(value):
 
 
 HIGHEST_EXPENSES = 0
+
 
 def get_total_and_highest_expenses():
     """
@@ -95,18 +96,26 @@ def get_total_income():
 
 
 def check_profit_or_loss():
+    """
+    TO ADD DOCSTRING COMMENT HERE!
+    """
     expenses = get_total_and_highest_expenses()
     income = get_total_income()
     if income > expenses:
-      print('Your money habits look good.')
-      print('Your total income is greater than your expenses. You are doing well.')
-      print(f'Your total income is {income}. While your total expenses is {expenses}.')
+        print('Your money habits look good.')
+        print('''Your total income is greater than your expenses.
+        You are doing well.''')
+        print(f'''Your total income is {income}.
+        While your total expenses is {expenses}.''')
     elif expenses > income:
-      print('You seem to be spending too much.')
-      print(f'Your total expenses is {expenses}. While your total income is {income}.')
+        print('You seem to be spending too much.')
+        print(f'''Your total expenses is {expenses}.
+        While your total income is {income}.''')
     else:
-      print('Your income and expense are equal.')
-    print('___________________________________________')
+        print('Your income and expense are equal.')
+        print('___________________________________________')
+
+
 def get_all_income():
     """
     clear the terminal, get income from spread sheet
@@ -151,7 +160,7 @@ def get_all_expenses():
         print(
           '''
           Expenses has been cleared.
-          You need to reconstruct the sheet from it's header with "Update"
+          You need to reconstruct the sheet from it's header with "Update".
           ___________________________________\n
           '''
         )
@@ -181,12 +190,12 @@ def update_budget_new(section, data):
         )
         initialize_update()
     elif len(data) > 5:
-        print('Error! Values are greater than five')
+        print('Error! Values are greater than five.')
         print(data)
-        print('Worksheet values should be a maximum of five')
+        print('Worksheet values should be a maximum of five.')
         initialize_update()
     elif len(data) < 5:
-        print('Error! Values are less than five')
+        print('Error! Values are less than five.')
         print(data)
         initialize_update()
 
@@ -207,16 +216,16 @@ def update_budget_column(section, data, row, column):
           ___________________________\n
           '''
         )
-        initialize_update()  
-    elif len(data) > 2:
-        print('Error! Values are greater than two')
-        print(data)
-        print('Values should be equal two when you are editing a column')
         initialize_update()
-    elif len(data) <  2:
-        print('Error! value is less than two')
+    elif len(data) > 2:
+        print('Error! Values are greater than two.')
         print(data)
-        print('Values should be equal two when you are editing a column')
+        print('Values should be equal two when you are editing a column.')
+        initialize_update()
+    elif len(data) < 2:
+        print('Error! value is less than two.')
+        print(data)
+        print('Values should be equal two when you are editing a column.')
         initialize_update()
 
 
@@ -242,7 +251,8 @@ def initialize_update():
                 To update a single column enter the title followed by the
                 figure seperated by comma.\n
                 For example: salary,2000.\n
-                To leave a column blank when creating a new row enter number zero.
+                To leave a column blank when creating a
+                new row enter number zero.
                 For example Feeding,500,0,1000,1000.
                 And Clothing,200,0,0,0 \n
                 To end the process please enter "Exit":\n
@@ -285,14 +295,14 @@ def clear_worksheet():
     TO ADD DOCSTRING COMMENT HERE
     """
     verification = input(
-            '''Warning! all data including worksheet header will be lost\n
-            This cannot be undone\n
+            '''Warning! all data including worksheet header will be lost.\n
+            This cannot be undone.\n
             You will need to reconstruct the sheet starting
             from its header for future usage with "update"\n
             To clear income enter  "Clear Income".\n
             To clear expenses enter "Clear Expenses"\n
-            To return to main type "Main"\n
-            To end the process enter exit\n
+            To return to main type "Main".\n
+            To end the process enter exit.\n
             ''')
     if convert_to_lowercase(verification) == "clear income":
         SHEET.worksheet('income').clear()
@@ -350,8 +360,11 @@ def initialize_app():
         print('Please enter "Income" to display all recorded income.\n')
         print('Please enter "Expenses" to display all recorded expenses.\n')
         print('Please enter "Highest" to get your highest expenses.\n')
-        print('Please enter "All" to display all recorded income and expenses.\n')
-        print('Please enter "Status" to know if you are making more money or spending more money')
+        print('''Please enter "All" to display all recorded income and expenses.\n
+        ''')
+        print('''Please enter "Status" to know if you are making more
+money or spending more money.\n
+        ''')
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
         user_input = input('Enter your data here:\n')
