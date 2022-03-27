@@ -167,7 +167,8 @@ def get_all_expenses():
         print(
           '''
           Expenses has been cleared.
-          '''
+          You need to reconstruct the sheet from it's header with "Update"
+          ___________________________________\n'''
         )
 
 
@@ -299,27 +300,28 @@ def clear_worksheet():
     """
     TO ADD DOCSTRING COMMENT HERE
     """
-    verification = input(
-            '''Warning! all data will be lost\n
+    verification = input('''
+            Warning! all data will be lost\n
             This cannot be undone\n
             To clear income enter  "Clear Income".\n
             To clear expenses enter "Clear Expenses"\n
             To return to main type "Main"\n
             To end the process enter exit\n
             ''')
-    sheet_header = '''['DESCRIPTION', 'JAN-MARCH',
-    'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC']'''
+    sheet_header = ['DESCRIPTION', 'JAN-MARCH', 'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC']
     if convert_to_lowercase(verification) == "clear income":
         worksheet = SHEET.worksheet('income')
         worksheet.clear()
         worksheet.append_row(sheet_header)
         get_all_income()
+        initialize_app()
 
     elif convert_to_lowercase(verification) == "clear expenses":
         worksheet = SHEET.worksheet('expenses')
         worksheet.clear()
         worksheet.append_row(sheet_header)
         get_all_expenses()
+        initialize_app()
 
 
 def check_entered_values(value):
@@ -377,7 +379,9 @@ expenses.\n''')
 more money or spending more money.\n''')
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
+        print('___________________________________________\n')
         user_input = input('Enter your data here:\n')
+        print('___________________________________________\n')
         if check_input_type(user_input) is True:
             check_entered_values(convert_to_lowercase(user_input))
 
