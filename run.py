@@ -26,7 +26,8 @@ def check_input_type(text):
     '''
     if text.isnumeric():
         os.system('cls' if os.name == 'nt' else 'clear')
-        print('Invalid input. Please enter alphabets')
+        print('Invalid input. Please enter alphabets.\n')
+        print('___________________________________________\n')
     else:
         return True
 
@@ -39,6 +40,7 @@ def convert_to_lowercase(value):
 
 
 HIGHEST_EXPENSES = 0
+
 
 def get_total_and_highest_expenses():
     """
@@ -89,7 +91,7 @@ def get_total_income():
                         total_income += int(value_a)
     else:
         total_income = """
-        Income is currently empty.Enter "Update" to add values.
+        Income is currently empty. Enter "Update" to add values.
         """
     print(f'Total Income: {total_income}')
     print('_____________________________')
@@ -97,21 +99,30 @@ def get_total_income():
 
 
 def check_profit_or_loss():
+    """
+    TO ADD DOCSTRING FUNCTION HERE
+    """
     expenses = get_total_and_highest_expenses()
     income = get_total_income()
-    if isinstance(income, int)  and isinstance(expenses, int) :
+    if isinstance(income, int) and isinstance(expenses, int):
         if income > expenses:
-          print('Your money habits look good.')
-          print('Your total income is greater than your expenses. You are doing well.')
-          print(f'Your total income is {income}. While your total expenses is {expenses}.')
+            print('Your money habits look good.\n')
+            print('''Your total income is greater than your expenses.
+You are doing well.\n''')
+            print('___________________________________________\n')
+            print(f'''Your total income is {income}.\n
+While your total expenses is {expenses}.\n''')
+            print('___________________________________________\n')
         elif expenses > income:
-          print('You seem to be spending too much.')
-          print(f'Your total expenses is {expenses}. While your total income is {income}.')
+            print('You seem to be spending too much.\n')
+            print(f'''Your total expenses is {expenses}.
+While your total income is {income}.\n''')
+            print('___________________________________________\n')
         else:
-          print('Your income and expense are equal.')
-        print('___________________________________________')
-        
-        
+            print('Your income and expense are equal.\n')
+            print('___________________________________________\n')
+
+
 def get_all_income():
     """
     clear the terminal, get income from spread sheet
@@ -184,12 +195,12 @@ def update_budget_new(section, data):
         )
         initialize_update()
     elif len(data) > 5:
-        print('Error! Values are greater than five')
+        print('Error! Values are greater than five.')
         print(data)
-        print('Worksheet values should be a maximum of five')
+        print('Worksheet values should be a maximum of five.')
         initialize_update()
     elif len(data) < 5:
-        print('Error! Values are less than five')
+        print('Error! Values are less than five.')
         print(data)
         initialize_update()
 
@@ -210,16 +221,16 @@ def update_budget_column(section, data, row, column):
           ___________________________\n
           '''
         )
-        initialize_update()  
-    elif len(data) > 2:
-        print('Error! Values are greater than two')
-        print(data)
-        print('Values should be equal two when you are editing a column')
         initialize_update()
-    elif len(data) <  2:
-        print('Error! value is less than two')
+    elif len(data) > 2:
+        print('Error! Values are greater than two.')
         print(data)
-        print('Values should be equal two when you are editing a column')
+        print('Values should be equal two when you are editing a column.')
+        initialize_update()
+    elif len(data) < 2:
+        print('Error! value is less than two.')
+        print(data)
+        print('Values should be equal two when you are editing a column.')
         initialize_update()
 
 
@@ -231,9 +242,9 @@ def initialize_update():
     while initialize:
         section = input(
           '''
-          Enter "Income" to update your income:
-          Enter "Expenses" to update your expenses:
-          Enter "Main" to return to the main page: \n
+          Enter "Income" to update your income:\n
+          Enter "Expenses" to update your expenses:\n
+          Enter "Main" to return to the main page:\n
           '''
         )
         section = convert_to_lowercase(section)
@@ -246,8 +257,8 @@ def initialize_update():
                 To update a single column enter the title followed by the
                 figure seperated by comma.\n
                 For example: salary,2000.\n
-                To leave a column blank when creating a new row enter number zero.
-                For example Feeding,500,0,1000,1000.
+                To leave a column blank when creating a new row enter
+                number zero.For example Feeding,500,0,1000,1000.
                 And Clothing,200,0,0,0 \n
                 To end the process please enter "Exit":\n
                 '''
@@ -296,18 +307,18 @@ def clear_worksheet():
             To return to main type "Main"\n
             To end the process enter exit\n
             ''')
-    sHEET_HEADER = ['DESCRIPTION', 'JAN-MARCH', 'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC' ]
+    sheet_header = '''['DESCRIPTION', 'JAN-MARCH',
+    'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC']'''
     if convert_to_lowercase(verification) == "clear income":
         worksheet = SHEET.worksheet('income')
         worksheet.clear()
-        worksheet.append_row(sHEET_HEADER)
+        worksheet.append_row(sheet_header)
         get_all_income()
-
 
     elif convert_to_lowercase(verification) == "clear expenses":
         worksheet = SHEET.worksheet('expenses')
         worksheet.clear()
-        worksheet.append_row(sHEET_HEADER)
+        worksheet.append_row(sheet_header)
         get_all_expenses()
 
 
@@ -346,6 +357,7 @@ def check_entered_values(value):
         return True
     else:
         print('Invalid input. Please enter the appropriate command. \n')
+        print('___________________________________________\n')
 
 
 def initialize_app():
@@ -355,15 +367,17 @@ def initialize_app():
     initialize = True
     while initialize:
         print('Welcome to the Budget App!\n')
-        print('Please enter "Update" to make changes to the budget.')
-        print('Please enter "Income" to display all recorded income.')
-        print('Please enter "Expenses" to display all recorded expenses.')
-        print('Please enter "Highest" to get your highest expenses.')
-        print('Please enter "All" to display all recorded income and expenses.')
-        print('Please enter "Status" to know if you are making more money or spending more money.')
-        print('Enter "clear" to clear worksheet.')
-        print('To end the process please enter "Exit".')
-        user_input = input('Enter your data here:')
+        print('Please enter "Update" to make changes to the budget.\n')
+        print('Please enter "Income" to display all recorded income.\n')
+        print('Please enter "Expenses" to display all recorded expenses.\n')
+        print('Please enter "Highest" to get your highest expenses.\n')
+        print('''Please enter "All" to display all recorded income and
+expenses.\n''')
+        print('''Please enter "Status" to know if you are making
+more money or spending more money.\n''')
+        print('Enter "clear" to clear worksheet.\n')
+        print('To end the process please enter "Exit".\n')
+        user_input = input('Enter your data here:\n')
         if check_input_type(user_input) is True:
             check_entered_values(convert_to_lowercase(user_input))
 
