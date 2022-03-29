@@ -1,5 +1,5 @@
 '''
-Checks os type
+Import os library
 '''
 import os
 import gspread
@@ -100,7 +100,8 @@ def get_total_income():
 
 def check_profit_or_loss():
     """
-    TO ADD DOCSTRING FUNCTION HERE
+    Subtract total income from total expenses.
+    Print message based on result.
     """
     expenses = get_total_and_highest_expenses()
     income = get_total_income()
@@ -130,13 +131,14 @@ def get_all_income():
     """
     os.system('cls' if os.name == 'nt' else 'clear')
     all_income = income.get_all_values()
+    print('___________________________________\n')
     if all_income:
         table = PrettyTable()
         print('Annual Income Sheet')
         table.field_names = all_income[0]
-        for index in range(len(all_income)):
+        for index, value in enumerate(all_income):
             if index > 0:
-                table.add_row(all_income[index])
+                table.add_row(value)
         print(table)
         get_total_income()
     else:
@@ -156,11 +158,11 @@ def get_all_expenses():
     all_expenses = expenses.get_all_values()
     if all_expenses:
         table = PrettyTable()
-        print('Annual expenses sheet')
+        print('Annual Expenses Sheet')
         table.field_names = all_expenses[0]
-        for index in range(len(all_expenses)):
+        for index, value in enumerate(all_expenses):
             if index > 0:
-                table.add_row(all_expenses[index])
+                table.add_row(value)
         print(table)
         get_total_and_highest_expenses()
     else:
@@ -180,11 +182,11 @@ def update_budget_new(section, data):
     if len(data) == 5:
         print("Updating budget........")
         budget_data = []
-        for index in range(len(data)):
+        for index, value in enumerate(data):
             if index != 0:
-                budget_data.append(int(data[index]))
+                budget_data.append(value)
             else:
-                budget_data.append(data[index])
+                budget_data.append(value)
         worksheet = SHEET.worksheet(section)
         print(budget_data)
         worksheet.append_row(budget_data)
@@ -237,7 +239,7 @@ def update_budget_column(section, data, row, column):
 
 def initialize_update():
     """
-    TO ADD DOCSTRING COMMENT HERE
+    Receive input and pass input values to update budget functions.
     """
     initialize = True
     while initialize:
@@ -298,17 +300,21 @@ def initialize_update():
 
 def clear_worksheet():
     """
-    TO ADD DOCSTRING COMMENT HERE
+    Print warning message.
+    Clear worksheet.
+    Replace worksheet with new header.
     """
     verification = input('''
-            Warning! all data will be lost\n
-            This cannot be undone\n
+            Warning! all data will be lost.\n
+            This cannot be undone.\n
             To clear income enter  "Clear Income".\n
-            To clear expenses enter "Clear Expenses"\n
-            To return to main type "Main"\n
-            To end the process enter exit\n
+            To clear expenses enter "Clear Expenses".\n
+            To return to main type "Main".\n
+            To end the process enter exit.\n
             ''')
-    sheet_header = ['DESCRIPTION', 'JAN-MARCH', 'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC']
+    sheet_header = [
+        'DESCRIPTION', 'JAN-MARCH', 'APRIL-JUNE', 'JULY-SEP', 'OCT-DEC'
+        ]
     if convert_to_lowercase(verification) == "clear income":
         worksheet = SHEET.worksheet('income')
         worksheet.clear()
@@ -326,7 +332,7 @@ def clear_worksheet():
 
 def check_entered_values(value):
     """
-    TO ADD DOCSTRING COMMENT HERE
+    Valid input for specific word.
     """
     if value == 'main':
         initialize_app()
@@ -365,6 +371,7 @@ def check_entered_values(value):
 def initialize_app():
     """
     Display messages to guide users on how to use the app.
+    call validation functions.
     """
     initialize = True
     while initialize:
@@ -379,6 +386,7 @@ expenses.\n''')
 more money or spending more money.\n''')
         print('Enter "clear" to clear worksheet.\n')
         print('To end the process please enter "Exit".\n')
+        print('Please scroll up to view.\n')
         print('___________________________________________\n')
         user_input = input('Enter your data here:\n')
         print('___________________________________________\n')
