@@ -4,7 +4,9 @@ The budget app was created to help users keep track of their finances quarter-ye
 Users are able to organise their money  into a separate annual income and expenses sheet so they can see where and how much is spent.
 Users are able to find out the highest expenses for the year and get the net income or expense.
  
-[Here is link to the live version of my project.](https://annual-budget-app.herokuapp.com/)
+* [Here is link to the live version of my project.](https://annual-budget-app.herokuapp.com/)
+* [Here is link to the spreadsheet.](https://docs.google.com/spreadsheets/d/1AISmadvUDGeb7F3gWocdoafF-R7RSH8TGHxi1TEv0KI/edit#gid=1259008555)
+
 
 # FINAL DESIGN
 ![Final design](images/final-design.png)
@@ -76,14 +78,17 @@ I have manually tested the project by doing the following:
 * Error message returns when user enters a command in upper case. Validated code to ensure both uppercase and lower case can be used. 
 
 # Technology used
-* Python - the language in which the game is written
-* Github - version control
-* Heroku - platform which the game was deployed
+* Python - the language in which the game is written.
+* Github - version control.
+* Heroku - platform which the app was deployed.
 * Am I Responsive - [Am I Responsive](http://ami.responsivedesign.is/?url=https%3A%2F%2Fannual-budget-app.herokuapp.com%2F#) was used to create the images in the Final Design section.
-* Libraries:
+
+# Libraries/Modules:
+  * os - This module provides a portable way of using operating system dependent functionality.
   * PrettyTable - Python library used to represent data in tables. 
   * Gspread - Python API for Google Sheets.
   * Google Auth - allows access to Google Cloud safely through a method called Credentials.
+  
 
 # Deployment
 The project was deployed using Code Institute’s mock terminal for Heroku.  

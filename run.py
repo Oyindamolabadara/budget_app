@@ -371,7 +371,7 @@ def check_entered_values(value):
 def initialize_app():
     """
     Display messages to guide users on how to use the app.
-    call validation functions.
+    Call validation functions.
     """
     initialize = True
     while initialize:
