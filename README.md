@@ -4,9 +4,7 @@ The budget app was created to help users keep track of their finances quarter-ye
 Users are able to organise their money  into a separate annual income and expenses sheet so they can see where and how much is spent.
 Users are able to find out the highest expenses for the year and get the net income or expense.
  
-* [Here is link to the live version of my project.](https://annual-budget-app.herokuapp.com/)
-* [Here is link to the spreadsheet.](https://docs.google.com/spreadsheets/d/1AISmadvUDGeb7F3gWocdoafF-R7RSH8TGHxi1TEv0KI/edit#gid=1259008555)
-
+* [Here is link to the live version of my project.](https://budget-app-w342.onrender.com/)
 
 # FINAL DESIGN
 ![Final design](images/final-design.png)
